@@ -2022,3 +2022,7 @@ div.minorPanelActive{
 div.majorPanelActive{
   display:block !important;
 }
+
+a {
+  text-decoration: none
+}

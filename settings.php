@@ -24,5 +24,3 @@ $def_sortorder = "desc";    // [default="desc"]; The sorting direction of the fi
 // (this is only used to determine cache age, so it doesn't matter too much if it is set wrongly as long as it is set)
 // a list of supported time zone strings is here: http://www.php.net/manual/en/timezones.php 
 # if (!ini_get('date.timezone')) ini_set('date.timezone', 'America/Toronto');
-
-?>
