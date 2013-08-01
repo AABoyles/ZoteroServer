@@ -15,9 +15,9 @@ $cache_base_URL = "";           // [default=""]; if the cache directory is NOT a
 
 // library view defaults
 $def_ipp = 20;              // [default=20]; items per page
-$def_sort = "dateAdded";    // [default="dateAdded"]; The name of the field by which entries are ordered
+$def_sort = 'dateAdded';    // [default="dateAdded"]; The name of the field by which entries are ordered
                             // valid values= "dateAdded", "title", "creator", "type", "date", "publisher", "publication", "journalAbbreviation", "language", "dateModified", "accessDate", "libraryCatalog", "callNumber", "rights", "addedBy", "numItems"
-$def_sortorder = "desc";    // [default="desc"]; The sorting direction of the field specified in the order parameter, valid values: "desc", "asc"
+$def_sortorder = 'desc';    // [default="desc"]; The sorting direction of the field specified in the order parameter, valid values: "desc", "asc"
 
 
 // time zone errors - if your script throws errors regarding time zone settings, uncomment (and edit) this line to set the time zone your server is located manually 

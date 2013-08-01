@@ -1,8 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Zotero Private Server</title>
+		<link rel="stylesheet" href="inc/css.css" type="text/css" media="screen" charset="utf-8"/>
+	</head>
+	<body>
+
 <?php
 require_once 'settings.php';
 require_once 'inc/include.php';
 require_once 'inc/phpZotero.php';
-include_once 'inc/header.php';  // HTML header including css file
 $zotero = new phpZotero($API_key);
 $itemkey = $_REQUEST['itemkey'];
 

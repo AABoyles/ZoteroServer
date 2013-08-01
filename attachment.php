@@ -34,7 +34,7 @@ $result = unzip($abs_zipfile,$abs_output,true,$writefiles);
 $cacheURL = "";
 if(substr($result,0,strlen($abs_output)) == $abs_output) {
     if($result == $abs_output) {
-        $html_output="";
+        $html_output="<html>\n<head>\n</head>\n<body>\n";
         $html_output .= "Display of Websnapshots is not fully implemented yet. Sorry, but this is due to a shortcoming of the zotero server API.<br><br>\n";
         $scriptpath = realpath(substr($_SERVER['SCRIPT_FILENAME'],0,strrpos($_SERVER['SCRIPT_FILENAME'],"/"))); 
         if ($scriptpath == substr(realpath("./" . $cache_dir),0,strlen($scriptpath))) {
@@ -58,7 +58,7 @@ if(substr($result,0,strlen($abs_output)) == $abs_output) {
             $html_output .= "However, if you use a cache directory which is located in the same directory as this script ";
             $html_output .= "($scriptpath) or you provide the base URL to whichever cache directory in the settings.php, ";
             $html_output .= "you would be able to use the workaround provided by this script.";
-            $html_output = "<html>\n<head>\n</head>\n<body>\n" . $html_output . "</body>\n</html>";
+            $html_output .= "</body>\n</html>";
         }
         echo ($html_output);
     } else {
@@ -74,4 +74,3 @@ if(substr($result,0,strlen($abs_output)) == $abs_output) {
 if (($cache_age==0) && (strlen($cacheURL)==0)) {    // do not purge immediately if web accessible websnapshot has been un zipped
     purge_cache(realpath("./" . $cache_dir), -1);
 }
-?>
