@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "/../settings.php";
+require __DIR__ . '/../settings.php';
 
 // remove all subdirectories of a cache folder which are older than a given number of minutes
 // the age is determined by the folder name which has the format XXXXXXX_YYYYMMDDHHMMSS

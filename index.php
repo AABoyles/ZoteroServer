@@ -1,33 +1,23 @@
 <html>
 	<head>
 		<title>Zotero Private Server</title>
+		<link rel="stylesheet" href="inc/normalize.css" type="text/css" media="screen" charset="utf-8"/>
+		<link rel="stylesheet" href="inc/tablesorter/css/theme.blue.css" type="text/css" media="screen" charset="utf-8">
 		<link rel="stylesheet" href="inc/css.css" type="text/css" media="screen" charset="utf-8"/>
+		<script type="text/javascript" src="inc/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="inc/tablesorter/js/jquery.tablesorter.min.js"></script>
+		<script type="text/javascript" src="inc/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="inc/jquery.dragtable.js"></script>
 	</head>
 	<body>
 
 		<?php
 		require_once 'inc/include.php';
 		$zotero = new phpZotero($API_key);
-		$ipp = $_REQUEST['ipp'];
-		if (!($ipp)) {
-			$ipp = $def_ipp;
-		}
-		$sort = $_REQUEST['sort'];
-		if (!($sort)) {
-			$sort = $def_sort;
-		}
-		$sortorder = $_REQUEST['sortorder'];
-		if (!($sortorder)) {
-			$sortorder = $def_sortorder;
-		}
 		$page = $_REQUEST['page'];
 		if (!($page)) {
 			$page = 1;
 		}
-
-		$webdav_url = "http://" . $_SERVER['HTTP_HOST'] . str_replace('?' . $_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']) . "webdav_server.php/zotero/";
-
-		echo("<h3>Total size of stored attachments: <u>" . format_size(foldersize(getcwd() . '/' . $data_dir)) . "</u>&nbsp; &nbsp; &nbsp; &nbsp;WebDAV URL: <a href='" . $webdav_url . "'>" . $webdav_url . "</a></h3>");
 
 		$orders[0] = $sortorder;
 		if (strcmp($orders[0], "asc")) {
@@ -44,7 +34,7 @@
 
 		// get first set of items from API
 		$start = ($page - 1) * $ipp;
-		if ($ipp > $fetchlimit){
+		if ($ipp > $fetchlimit) {
 			$limit = $fetchlimit;
 		} else {
 			$limit = $ipp;
@@ -52,13 +42,17 @@
 		$items = $zotero -> getItemsTop($user_ID, array(format => 'atom', content => 'none', start => $start, limit => $limit, order => $sort, sort => $sortorder));
 		$totalitems = intval(substr($items, strpos($items, "<zapi:totalResults>") + 19, strpos($items, "</zapi:totalResults>") - strpos($items, "<zapi:totalResults>") - 19));
 
-		// MAIN DATA TABLE
-		// parse result sets, write out data and get more from API if needed
-		echo("<table class=\"library-items-div\">\n<thead><tr><td><b>Attachments</a></b></td>");
-		echo("<td><b><a href='?page=1&sort=creator&sortorder=" . $orders[!(boolean) abs(strcmp($sort, "creator"))] . "'>Creator</a></b></td>");
-		echo("<td><b><a href='?page=1&sort=date&sortorder=" . $orders[!(boolean) abs(strcmp($sort, "date"))] . "'>Year</b></td>");
-		echo("<td><b><a href='?page=1&sort=title&sortorder=" . $orders[!(boolean) abs(strcmp($sort, "title"))] . "'>Title</b></td>");
-		echo("</tr></thead>");
+		echo '<h1><img src="imgs/zotero.png" /> Private Server</h1>
+<table class="tablesorter" id="Documents">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Creator</th>
+			<th>Year</th>
+			<th>Attachments</th>
+		</tr>
+	</thead>
+	<tbody>';
 		while (($i < ($ipp - 1)) && (strpos($items, "<entry>") > 0)) {
 			$offset = 0;
 			$pos = strpos($items, "<entry>", $offset);
@@ -80,23 +74,23 @@
 				if (strpos($entry, "<zapi:numChildren>") > 0)
 					$item_numChildren = substr($entry, strpos($entry, "<zapi:numChildren>") + 18, strpos($entry, "</zapi:numChildren>") - strpos($entry, "<zapi:numChildren>") - 18);
 				$item[$i] = array(title => $item_title, itemKey => $item_itemKey, creatorSummary => $item_creatorSummary, year => $item_year, numChildren => $item_numChildren);
-				echo("<tr>");
-				echo("<td><a href=\"details.php?itemkey=" . $item[$i]['itemKey'] . "\">" . $item[$i]['numChildren'] . "</a></td>");
-				echo("<td><a href=\"details.php?itemkey=" . $item[$i]['itemKey'] . "\">" . $item[$i]['creatorSummary'] . "</a></td>");
-				echo("<td><a href=\"details.php?itemkey=" . $item[$i]['itemKey'] . "\">" . $item[$i]['year'] . "</a></td>");
-				echo("<td><a href=\"details.php?itemkey=" . $item[$i]['itemKey'] . "\">" . $item[$i]['title'] . "</a></td>");
+				echo('<tr>');
+				echo("<td><a href=\"details.php?itemkey=" . $item[$i]['itemKey'] . "\">" . $item[$i]['title'] . '</a></td>');
+				echo('<td>' . $item[$i]['creatorSummary'] . '</td>');
+				echo('<td>' . $item[$i]['year'] . '</td>');
+				echo('<td>' . $item[$i]['numChildren'] . '</td>');
 				echo("</tr>\n");
 				$i = $i + 1;
-				$offset = strpos($items, "</entry>", $offset) + 8;
-				$pos = strpos($items, "<entry>", $offset);
+				$offset = strpos($items, '</entry>', $offset) + 8;
+				$pos = strpos($items, '<entry>', $offset);
 			}
 			$items = $zotero -> getItemsTop($user_ID, array(format => 'atom', content => 'none', start => ($start + $i), limit => $limit, order => $sort, sort => $sortorder));
 		}
-		echo("</table><br>\n\n");
-		echo(($start + 1) . " to " . ($start + $i) . " of " . $totalitems);
+		echo("</tbody></table><br />\n\n");
+		echo('<span id="pagecounter">' . ($start + 1) . " to " . ($start + $i) . " of " . $totalitems . '</span>');
 
 		// NAVIGATION FOOTER
-		echo("<hr>\n<table>\n");
+		echo("<table>\n");
 		$parm_ipp = ($ipp == $def_ipp) ? "" : "&ipp=$ipp";
 		$parm_sort = ($sort == $def_sort) ? "" : "&sort=$sort";
 		$parm_sortorder = ($sortorder == $def_sortorder) ? "" : "&sortorder=$sortorder";
@@ -170,5 +164,16 @@
 		<tfoot>
 		</tfoot>
 		</table>
+		<?php
+		$webdav_url = "http://" . $_SERVER['HTTP_HOST'] . str_replace('?' . $_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']) . "webdav_server.php/zotero/";
+		echo('<h3>Total size of stored attachments: ' . format_size(foldersize(getcwd() . '/' . $data_dir)) . '<br />WebDAV URL: <a href="' . $webdav_url . '">' . $webdav_url . '</a></h3>');
+		?>
+		<script>
+      $(document).ready(function() {
+        var sorttable = $("table#Documents");
+        sorttable.tablesorter();
+        //sorttable.dragtable();
+      });
+		</script>
 	</body>
 </html>
