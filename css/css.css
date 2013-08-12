@@ -12,13 +12,61 @@ Reds
     #700    : Darker Red (a:visited)
 */
 @media screen {
-    
+
 body {
     background-color: #e6e6e6;
     color: #444;
-    font:87.5%/1.42857143em "Lucida Grande", Verdana, sans-serif; 
+    font:87.5%/1.42857143em "Lucida Grande", Verdana, sans-serif;
     margin:0;
-    padding: 0 0 40px;
+    padding: 20px 40px;
+    background-image: -webkit-gradient(
+        linear,
+        0% 0%,
+        0% 100%,
+        color-stop(0, rgba(0, 0, 0, .1)),
+        color-stop(0.15, rgba(0, 0, 0, .1)),
+        color-stop(0.1501, rgba(0, 0, 0, 0)),
+        color-stop(1, rgba(0, 0, 0, 0))
+    );
+
+    background-image: -webkit-linear-gradient(
+        top,
+        rgba(0, 0, 0, .1),
+        rgba(0, 0, 0, .1) 200px,
+        rgba(0, 0, 0, 0) 201px,
+        rgba(0, 0, 0, 0)
+    );
+
+    background-image: -moz-linear-gradient(
+        top,
+        rgba(0, 0, 0, .1),
+        rgba(0, 0, 0, .1) 200px,
+        rgba(0, 0, 0, 0) 201px,
+        rgba(0, 0, 0, 0)
+    );
+    background-image: -o-linear-gradient(
+        top,
+        rgba(0, 0, 0, .1),
+        rgba(0, 0, 0, .1) 200px,
+        rgba(0, 0, 0, 0) 201px,
+        rgba(0, 0, 0, 0)
+    );
+
+    background-image: -ms-linear-gradient(
+        top,
+        rgba(0, 0, 0, .1),
+        rgba(0, 0, 0, .1) 200px,
+        rgba(0, 0, 0, 0) 201px,
+        rgba(0, 0, 0, 0)
+    );
+
+    background-image: linear-gradient(
+        top,
+        rgba(0, 0, 0, .1),
+        rgba(0, 0, 0, .1) 200px,
+        rgba(0, 0, 0, 0) 201px,
+        rgba(0, 0, 0, 0)
+    );
 }
 
 body {
@@ -45,6 +93,8 @@ a:hover {color: #369;}
 a:active {color: #333;}
 
 a img {border:none;}
+
+ul.plain-list {list-style:none;}
 
 /* Navigation defaults */
 nav ul {
@@ -76,7 +126,7 @@ td {
 th {
     text-transform: capitalize;
     border-bottom: 1px dotted #ccc;
-    
+
 }
 
 thead th {
@@ -165,6 +215,10 @@ form textarea {
     display:block;
 }
 
+form fieldset#fieldset-grouptype {
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+}
+
 /**
  * Added because of iframe showing up on registration form, supposedly
  * because of the ReCaptcha field.
@@ -178,7 +232,7 @@ meter {
 }
 
 /* -- Notifications -- */
-.messages { 
+.messages {
     font-weight:bold; padding:18px 18px 3px 18px; text-align:center; margin:9px 0px;
 }
 
@@ -187,7 +241,8 @@ meter {
 }
 
 #confirm {background:#CBF7CA;}
-#notice {background:#F7F7CA;}
+#notice {background:#F7F7CA;}/*old yellow*/
+#notice {background:#F0F079;}
 #error {background:#F7CBCA;}
 
 ul#js-message-list {
@@ -271,23 +326,23 @@ input.button {
     -webkit-border-radius: 4px;
     border-radius: 4px;
     background-image: -webkit-gradient(
-        linear, 
-        0% 0%, 
-        0% 100%, 
-        color-stop(0, rgba(255, 255, 255, .05)), 
-        color-stop(0.5, rgba(255, 255, 255, .25)), 
-        color-stop(0.5001, rgba(255, 255, 255, 0)), 
+        linear,
+        0% 0%,
+        0% 100%,
+        color-stop(0, rgba(255, 255, 255, .05)),
+        color-stop(0.5, rgba(255, 255, 255, .25)),
+        color-stop(0.5001, rgba(255, 255, 255, 0)),
         color-stop(1, rgba(255, 255, 255, 0))
     );
-    
+
     background-image: -webkit-linear-gradient(
-        top, 
+        top,
         rgba(255,255,255,0.05),
         rgba(255,255,255,0.25) 50%,
         rgba(255,255,255,0) 50.01%,
         rgba(255,255,255,0)
     );
-    
+
     background-image: -moz-linear-gradient(
         top,
         rgba(255,255,255,0.05),
@@ -302,7 +357,7 @@ input.button {
         rgba(255,255,255,0) 50.01%,
         rgba(255,255,255,0)
     );
-    
+
     background-image: -ms-linear-gradient(
         top,
         rgba(255,255,255,0.05),
@@ -310,7 +365,7 @@ input.button {
         rgba(255,255,255,0) 50.01%,
         rgba(255,255,255,0)
     );
-    
+
     background-image: linear-gradient(
         top,
         rgba(255,255,255,0.05),
@@ -318,7 +373,7 @@ input.button {
         rgba(255,255,255,0) 50.01%,
         rgba(255,255,255,0)
     );
-    
+
     text-shadow:-1px -1px 1px rgba(0,0,0,0.2);
     text-align:center;
     color: #fff;
@@ -367,7 +422,7 @@ input.button:active {
     padding-bottom: 3px;
 }
 .action-links li:not(:last-child):after {
-    content: " Â· ";
+    content: " · ";
     color: rgba(0,0,0,0.5);
     padding: 0 0.2em;
 }
@@ -471,7 +526,7 @@ header .center {
 
 #login-links {
     font-size:0.857142857em;
-    margin-bottom:11px;
+    margin-bottom:10px;
 }
 
 #login-links a {
@@ -480,7 +535,7 @@ header .center {
 }
 
 #login-links a:not(:last-child):after {
-    content: " Â· ";
+    content: " · ";
     color: #999;
     text-decoration:none;
     padding: 0 2px;
@@ -509,7 +564,7 @@ header .center {
 }
 #sitenav li {
     display:inline-block;
-    margin:0;        
+    margin:0;
 }
 
 *:first-child+html #sitenav li {
@@ -519,7 +574,7 @@ header .center {
 #sitenav a {
     -moz-border-radius: 8px 8px 0 0;
     border-radius: 8px 8px 0 0;
-    padding: 15px 12px 12px;
+    padding: 15px 10px 12px;
 }
 
 #sitenav a:link,
@@ -560,13 +615,13 @@ header .center {
 #simple-search input {
     font-size:0.95em;
     font: -webkit-small-control
-    
+
 }
 
 #simple-search .clear-field-button {
     border: none;
     background: none !important;
-    margin-left:-30px;
+    margin-left:-35px;
     position:relative;
     opacity:0.3;
 }
@@ -612,13 +667,16 @@ header .center {
     font-size:115%;
     float:left;
     width: 65%;
-    margin-bottom: 40px;
     line-height: 150%;
 }
 
-#download {
-    width: 31%;
+#download-container {
+	margin-top: -10px;
+	width: 31%;
     float:right;
+}
+
+#download {
     display:block;
     text-decoration:none;
     padding: 20px 0;
@@ -639,8 +697,16 @@ header .center {
     border-color: #c00;
     background-color: #c00;
 }
+
+#download-container p {
+	margin: 2px 0 12px;
+	padding: 0;
+	text-align: center;
+	font-size: .85em;
+}
+
 #features {
-    clear:both;        
+    clear:both;
     padding: 40px;
     margin: 0 -40px;
     border: 5px solid rgba(255,255,255, 0.5);
@@ -900,9 +966,74 @@ h2 .ui-button {
     margin-bottom: 12px;
 }
 
-.download-link {
+#recommended-client-download a.download-link,
+#firefox-section a.download-link {
     display:block;
-    width:250px;
+    padding: 0;
+    height: 45px;
+    width: 236px;
+    line-height: 45px;
+    position: relative;
+    padding-left:64px;
+    margin-left:40px;
+}
+
+#recommended-connector-download a.download-link {
+    font-size: 13px;
+    margin-right: 10px;
+    opacity:0.5;
+    padding-top:0px;
+    padding-bottom:2px;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+#recommended-connector-download a.recommended-download {
+    opacity:1.0;
+}
+
+#recommended-connector-download a.download-link:hover {
+    opacity:1.0;
+}
+
+
+/* == Download Page == */
+#recommended-client-download ul {
+    list-style:none;
+
+}
+#recommended-connector-download ul {
+    list-style:none;
+
+}
+
+#download-options ul {
+    list-style:none;
+}
+
+/* == Bookmarklet Page == */
+ul#bookmarklet-tabs li {
+/*    line-height:16px;*/
+    border-right: 1px solid #bbb;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    cursor:pointer;
+    list-style-position:inside;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255,255,255,0);
+    border-bottom: 1px solid rgba(255,255,255,0);
+    margin-top: -1px;
+}
+
+ul#bookmarklet-tabs li.selected {
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    border-right: 0px;
+}
+
+#bookmarklet-div {
+    padding-left:10px;
 }
 
 /* == Zotero Plugins Page == */
@@ -915,7 +1046,7 @@ h2 .ui-button {
     box-shadow: 0 1px 3px rgba(58, 78, 103, 0.15) inset, 0 1px 0 rgba(255, 255, 255, 0.5);
     -moz-box-shadow: 0 1px 3px rgba(58, 78, 103, 0.15) inset, 0 1px 0 rgba(255, 255, 255, 0.5);
     -webkit-box-shadow: 0 1px 3px rgba(58, 78, 103, 0.15) inset, 0 1px 0 rgba(255, 255, 255, 0.5);
-    
+
 }
 
 div.plugin-nugget {
@@ -932,11 +1063,11 @@ div.plugin-nugget {
 }
 
 .plugin-author {
-    
+
 }
 
 .plugin-description {
-    
+
 }
 
 /* == User Pages == */
@@ -1022,6 +1153,11 @@ span.localized-date-span {
     margin-bottom:0;
 }
 
+#cite-link {
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
 #move-item-links-buttonset {
     margin-left:1em;
     margin-right:3em;
@@ -1031,11 +1167,11 @@ span.localized-date-span {
     font-size:0.9em;
 }
 
-.remove-from-collection-link .ui-button-text {
+/*.remove-from-collection-link .ui-button-text {
     font-size:0.9em;
     padding-top:0.1em !important;
     padding-bottom:0.1em !important;
-}
+}*/
 
 
 .creator-input-div {
@@ -1085,15 +1221,35 @@ td.tags * {
 #item-pagination-div li{
     display:inline-block;
 }
+#item-pagination-div {
+    text-align:center;
+}
+
+#item-pagination-div .back-item-pagination {
+    float:left;
+    padding-left:0px;
+    margin-top:0px;
+}
+
+#item-pagination-div .forward-item-pagination {
+    float:right;
+    margin-top:0px;
+}
+
 
 #item-pagintation-div a.paginator{
     display:inline-block;
 }
 /*
 #item-pagination-div li:not(:last-child):after{
-    content: " Â· ";
+    content: " · ";
 }
 */
+
+/* library settings dialog */
+#library-settings-form label {
+    margin-bottom:0.3em;
+}
 
 /* == Item Details == */
 ul#notes-and-attachments {
@@ -1104,6 +1260,25 @@ ul#notes-and-attachments li {
     margin-top: 5px;
 }
 
+#upload-attachment-link {
+    margin-bottom:3px;
+}
+
+#cite-item-link {
+    margin-bottom:3px;
+}
+
+.ui-button-text {
+    text-shadow:none;
+}
+
+#cite-box-div {
+    border:1px solid #d5d5d5;
+    margin:5px;
+    padding:3px;
+    height:300px;
+    overflow: auto;
+}
 
 /* == Login page == */
 #login fieldset {
@@ -1114,6 +1289,15 @@ ul#notes-and-attachments li {
 
 #login fieldset:not(:last-child) {
     margin-right: 4%;
+}
+
+/* == Global search page == */
+#supportrefinementdiv label{
+    clear:both;
+}
+
+#support-submit, #people-submit, #group-submit {
+    margin-top:5px;
 }
 
 /* == Registration page == */
@@ -1172,7 +1356,7 @@ ul.item-pagination {
     /*border-bottom: 1px dotted #ccc;*/
     padding: 5px;
     color: #16B;
-    
+
     border:1px solid #ccc;
     border-radius:10px;
     margin:5px 0px 5px 2px;
@@ -1240,7 +1424,7 @@ td.tags a {
 }
 
 td.tags li:not(:last-child):after {
-    content: " Â· ";
+    content: " · ";
     color: rgba(0,0,0,0.5);
 }
 
@@ -1314,9 +1498,62 @@ td.tags li:not(:last-child):after {
     margin-top:1em;
 }
 
+/*export section*/
+#export-formats-div {
+/*    border:1px solid rgba(0,0,0,0.3);
+    border-radius:5px;*/
+    padding-top:2px;
+    margin-top:5px;
+    margin-bottom:5px;
+    max-width:200px;
+}
+
+#export-section-title {
+    margin-top:2px;
+    margin-bottom:4px;
+    text-decoration:none;
+}
+#export-section-title a{
+    text-decoration:none;
+}
+
+#export-formats-heading {
+
+}
+
+#export-list {
+}
+
 /*item details*/
 .itemDetailForm td > input[type=text] {
     width:80%;
+}
+
+#feed-link-div.ajaxload {
+    margin-top:5px;
+}
+
+#export-formats-div {
+    /*
+    border:1px solid rgb(204, 204, 204);
+    border-radius:10px 10px 10px 10px;
+    */
+}
+
+#export-formats-div ul {
+    list-style:none;
+    padding:0;
+}
+
+/* Attachment Upload */
+#fileuploaddroptarget {
+    padding-top:50px;
+    border: 1px solid black;
+    height:200px;
+    text-align:center;
+}
+
+#fileuploaddroptarget h3 {
 }
 
 /* == Settings styles == */
@@ -1402,6 +1639,17 @@ ul#groups th {
 ul#group-invitations {
     list-style:none;
 }
+
+a.group-image img {
+    padding:2px 4px;
+}
+
+div.nugget-group {
+    border-top:2px solid rgba(0,0,0,0.3);
+    padding-top: 8px;
+    padding-left: 4px;
+}
+
 /* New Group Form */
 .group-select {
     border-radius: 10px;
@@ -1613,23 +1861,23 @@ body div.dokuwiki div.major-col {
     float:none;
     display:inline;
 }
-.dokuwiki div.plugin_translation ul li a.wikilink2:link, 
-.dokuwiki div.plugin_translation ul li a.wikilink2:hover, 
-.dokuwiki div.plugin_translation ul li a.wikilink2:active, 
+.dokuwiki div.plugin_translation ul li a.wikilink2:link,
+.dokuwiki div.plugin_translation ul li a.wikilink2:hover,
+.dokuwiki div.plugin_translation ul li a.wikilink2:active,
 .dokuwiki div.plugin_translation ul li a.wikilink2:visited {
     background: #fff;
     color:#999 !important;
     border-bottom: 1px dotted #ccc;
 }
 
-.dokuwiki div.plugin_translation ul li a.wikilink1:link, 
-.dokuwiki div.plugin_translation ul li a.wikilink1:hover, 
+.dokuwiki div.plugin_translation ul li a.wikilink1:link,
+.dokuwiki div.plugin_translation ul li a.wikilink1:hover,
 .dokuwiki div.plugin_translation ul li a.wikilink1:active,
 .dokuwiki div.plugin_translation ul li a.wikilink1:visited {
     background-color: #ddd;
     color: #333 !important;
     border-bottom:none;
-    
+
 }
 
 div.dokuwiki .media img.medialeft {
@@ -1665,6 +1913,11 @@ div.dokuwiki ul ul {
 div.dokuwiki form.btn_source div.no input[value="Show pagesource"]{
     display:none;
 }
+
+div.dokuwiki #wiki__text.edit {
+    min-height: 300px;
+}
+
 /*
 .dokuwiki .page h2,
 .dokuwiki .page .level2 {
@@ -1761,7 +2014,7 @@ div.dokuwiki form.btn_source div.no input[value="Show pagesource"]{
 }
 .DiscussionStarted:after,
 .DiscussionLastComment:after {
-    content: " Â· ";
+    content: " · ";
     padding: 0 4px;
     color: #999;
 }
@@ -1834,7 +2087,7 @@ div.dokuwiki form.btn_source div.no input[value="Show pagesource"]{
 }
 
 .CommentHeader li.comment-time:before {
-    content: " Â· ";
+    content: " · ";
     color: #ccc;
 }
 .Comment blockquote {
@@ -1889,7 +2142,7 @@ footer nav li {
     padding: 0 0.2em;
 }*/
 footer nav li:not(:last-child):after {
-    content: " Â· ";
+    content: " · ";
     color: rgba(255,255,255,0.25);
 }
 
@@ -1927,10 +2180,10 @@ footer nav li:not(:last-child):after {
     body {
         background-image:none;
     }
-    
+
     #sitenav ul {
     }
-    
+
     #sitenav a {
         padding: 15px 10px;
     }
@@ -1941,7 +2194,7 @@ footer nav li:not(:last-child):after {
         background-image:none;
         min-width: 840px;
     }
-    
+
     header {
         margin-left:10px;
         margin-right: 10px;
@@ -1963,7 +2216,7 @@ footer nav li:not(:last-child):after {
   #minor-panel {
     display:none;
   }
-  
+
   #major-panel {
     width:100%;
     height:100%;
@@ -1972,7 +2225,7 @@ footer nav li:not(:last-child):after {
     top:0;
     bottom:0;
   }
-  
+
   body {
     min-width:300px;
   }
@@ -1996,7 +2249,7 @@ footer nav li:not(:last-child):after {
     top:0;
     bottom:0;
   }
-  
+
   body {
     min-width:300px;
   }
@@ -2012,7 +2265,7 @@ div#dialogPanel {
   bottom:0;
   z-index:1000;
   background-color: #e6e6e6;
-  
+
 }
 
 div.minorPanelActive{
@@ -2021,8 +2274,4 @@ div.minorPanelActive{
 
 div.majorPanelActive{
   display:block !important;
-}
-
-a {
-  text-decoration: none
 }
